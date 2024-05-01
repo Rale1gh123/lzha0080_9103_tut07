@@ -27,5 +27,12 @@ Links to an external site.)
 ![An image of a cat](http://placekitten.com/200/300
 Links to an external site.)
 
-![An image of the Mona Lisa](asset/Mona_Lisa.jpg
-Links to an external site.)
+![An image of the Mona Lisa](asset/Mona_Lisa.jpg)
+
+```
+function helloWorld() {
+console.log("Hello, world!");
+}
+```
+
+> This is a blockquote.
