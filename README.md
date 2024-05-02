@@ -29,10 +29,13 @@ Links to an external site.)
 
 ![An image of the Mona Lisa](asset/Mona_Lisa.jpg)
 
+![An image of the Mona Lisa](Quiz_8/Inspration_1.jpg)
+
 ```
 function helloWorld() {
 console.log("Hello, world!");
 }
 ```
+![An inspration image of teamLab](Quiz 8/Quiz 8 Picture/Inspration 1.jpg)
 
 > This is a blockquote.
