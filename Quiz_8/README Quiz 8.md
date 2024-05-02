@@ -1,7 +1,4 @@
-# lzha0080_9103_tut07
-
-This is my first local change to the pool
-
+# lzha0080_9103_tut07_Quiz 8
 # **Quiz 8**
 ## **Part 1: Imaging Technique Inspiration**
 I got some inspiration from the teamLab website. Although there are many works on teamLab that are realized through lighting effects, I thought that I could use code lines, particles, etc. to replace the lighting effects. From what is shown in these pictures, the effect of jump or transformation can be achieved by fusing and extracting some elements in the pictures and adding interactivity. teamLab's own works also focus on aspects such as fluidity, interactivity and flow changes, and the final work can be realized by incorporating these elements.
