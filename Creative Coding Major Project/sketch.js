@@ -1,6 +1,8 @@
-let imgDrwPrps = {aspect: 0, width: 0, height: 0, xOffset: 0, yOffset: 0};
-let canvasAspectRatio = 0;
-let numRects1, numRects2, numRects3, numRects4, numRects5, numRects6, numRects7, numRects8, numRects9, numRects15, numRects17, numRects18, numRects19, numRects20, numRects23; // Numbers of Squares
+let imgDrwPrps = {aspect: 0, width: 0, height: 0, xOffset: 0, yOffset: 0}; //Used to store canvas properties (width, height, offset, etc.)
+let canvasAspectRatio = 0; //Stores the aspect ratio of the canvas
+let numRects1, numRects2, numRects3, numRects4, numRects5, numRects6, numRects7, numRects8, numRects9, numRects11, numRects15, numRects17, numRects18, numRects19, numRects20, numRects23; // Numbers of moved squares
+
+//define moved rects
 let rects1 = [];
 let rects2 = [];
 let rects3 = [];
@@ -17,16 +19,20 @@ let rects19 = [];
 let rects20 = [];
 let rects23 = [];
 
+//Array storing the colors of the squares
 let colors = [
   [173, 58, 47],   // red
   [75, 107, 186],   // blue
   [219, 217, 213]  // gray
 ];
+let colorIndex = 0; // For color indexing
+let cycleDuration = 1200; // Duration of each cycle
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  frameRate(30); //Set the frame rate to 30 frames per second
   calculateCanvasProps();
-  numRects1 = int(random(3, 7));  // random number between 3-6
+  numRects1 = int(random(3, 7));  // set random numbers of rects
   numRects2 = int(random(4, 6));
   numRects3 = int(random(3, 7));
   numRects4 = int(random(4, 8));
@@ -41,13 +47,24 @@ function setup() {
   numRects19 = 3;
   numRects20 = 4;
   numRects23 = 4;
-
   initializeRects();
-  setInterval(updateRects, 35); // use setInternal to refresh square position
+  setInterval(updateRects, 35); //Update the square position and color every 35 milliseconds
 }
 
 function draw() {
-  background(230, 230, 230); // Background color
+  let cycleTime = frameCount % cycleDuration; // Set time period
+  let lerpFactor; // Calculate the interpolation factor lerpFactor for smooth transition of background color and transparency of the square
+
+  if (cycleTime < cycleDuration / 2) {
+    // The first half of the time period, from white to nearly black
+    lerpFactor = map(cycleTime, 0, cycleDuration / 2, 0, 1);
+  } else {
+    // The second half of the time cycle, from nearly black to white
+    lerpFactor = map(cycleTime, cycleDuration / 2, cycleDuration, 1, 0);
+  }
+
+  let backgroundColor = lerpColor(color(240, 240, 240), color(50, 50, 50), lerpFactor);
+  background(backgroundColor); // Background color
 
 
   noStroke(); // Disable border edges
@@ -119,6 +136,8 @@ function draw() {
   let rect13W = imgDrwPrps.width * 0.1;
   let rect13H = imgDrwPrps.height * 0.02;
 
+  
+
   // The yellow line rectangle from left to right on the X axis
   let rect14X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.025;
   let rect14Y = imgDrwPrps.yOffset;
@@ -181,7 +200,7 @@ function draw() {
   let rect25H = imgDrwPrps.height * 0.160;
 
   //Fixed intersection square blue block
-  //The first row of three
+  //Row one
   let rect26X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.025;
   let rect26Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.024;
   let rect26W = imgDrwPrps.width * 0.02;
@@ -197,7 +216,7 @@ function draw() {
   let rect28W = imgDrwPrps.width * 0.02;
   let rect28H = imgDrwPrps.height * 0.02;
 
-  //The second row has four
+  //Row 2
   let rect29X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.115;
   let rect29Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.160;
   let rect29W = imgDrwPrps.width * 0.02;
@@ -218,7 +237,7 @@ function draw() {
   let rect32W = imgDrwPrps.width * 0.02;
   let rect32H = imgDrwPrps.height * 0.02;
 
-  //The third row has four
+  //Row 3
   let rect33X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect33Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.350;
   let rect33W = imgDrwPrps.width * 0.02;
@@ -239,7 +258,7 @@ function draw() {
   let rect36W = imgDrwPrps.width * 0.02;
   let rect36H = imgDrwPrps.height * 0.02;
 
-  //The fourth row has two
+  //Row 4
   let rect37X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect37Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.430;
   let rect37W = imgDrwPrps.width * 0.02;
@@ -250,7 +269,7 @@ function draw() {
   let rect38W = imgDrwPrps.width * 0.02;
   let rect38H = imgDrwPrps.height * 0.02;
 
-  //The fifth row three
+  //Row 5
   let rect39X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect39Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.560;
   let rect39W = imgDrwPrps.width * 0.02;
@@ -266,7 +285,7 @@ function draw() {
   let rect41W = imgDrwPrps.width * 0.02;
   let rect41H = imgDrwPrps.height * 0.02;
 
-  //Sixth row two
+  //Row 6
   let rect42X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.115;
   let rect42Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.625;
   let rect42W = imgDrwPrps.width * 0.02;
@@ -277,19 +296,19 @@ function draw() {
   let rect43W = imgDrwPrps.width * 0.02;
   let rect43H = imgDrwPrps.height * 0.02;
 
-  //The eighth row
+  //Row 8
   let rect44X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.225;
   let rect44Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.725;
   let rect44W = imgDrwPrps.width * 0.02;
   let rect44H = imgDrwPrps.height * 0.02;
   
-  //The tenth line is one
+  //Row 10
   let rect45X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.842;
   let rect45Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.805;
   let rect45W = imgDrwPrps.width * 0.02;
   let rect45H = imgDrwPrps.height * 0.02;
 
-  //Row 11, four
+  //Row 11
   let rect46X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect46Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.850;
   let rect46W = imgDrwPrps.width * 0.02;
@@ -310,7 +329,7 @@ function draw() {
   let rect49W = imgDrwPrps.width * 0.02;
   let rect49H = imgDrwPrps.height * 0.02;
 
-  //Row 13, three
+  //Row 13
   let rect50X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.115;
   let rect50Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.940;
   let rect50W = imgDrwPrps.width * 0.02;
@@ -328,7 +347,7 @@ function draw() {
 
 
   //Fixed square red block at intersection
-  //The second row has two
+  //Row 2
   let rect53X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.025;
   let rect53Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.160;
   let rect53W = imgDrwPrps.width * 0.02;
@@ -339,7 +358,7 @@ function draw() {
   let rect54W = imgDrwPrps.width * 0.02;
   let rect54H = imgDrwPrps.height * 0.02;
 
-  //The third row three
+  //Row 3
   let rect55X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.025;
   let rect55Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.350;
   let rect55W = imgDrwPrps.width * 0.02;
@@ -355,7 +374,7 @@ function draw() {
   let rect57W = imgDrwPrps.width * 0.02;
   let rect57H = imgDrwPrps.height * 0.02;
 
-  //The fourth row has four
+  //Row 4
   let rect58X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.115;
   let rect58Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.430;
   let rect58W = imgDrwPrps.width * 0.02;
@@ -376,7 +395,7 @@ function draw() {
   let rect61W = imgDrwPrps.width * 0.02;
   let rect61H = imgDrwPrps.height * 0.02;
 
-  //The fifth row three
+  //Row 5
   let rect62X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.647;
   let rect62Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.560;
   let rect62W = imgDrwPrps.width * 0.02;
@@ -392,7 +411,7 @@ function draw() {
   let rect64W = imgDrwPrps.width * 0.02;
   let rect64H = imgDrwPrps.height * 0.02;
 
-  //Sixth row three
+  //Row 6
   let rect65X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect65Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.625;
   let rect65W = imgDrwPrps.width * 0.02;
@@ -408,13 +427,13 @@ function draw() {
   let rect67W = imgDrwPrps.width * 0.02;
   let rect67H = imgDrwPrps.height * 0.02;
 
-  //The seventh row
+  //Row 7
   let rect68X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect68Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.685;
   let rect68W = imgDrwPrps.width * 0.02;
   let rect68H = imgDrwPrps.height * 0.02;
 
-  //Row 8, two
+  //Row 8
   let rect69X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect69Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.725;
   let rect69W = imgDrwPrps.width * 0.02;
@@ -425,13 +444,13 @@ function draw() {
   let rect70W = imgDrwPrps.width * 0.02;
   let rect70H = imgDrwPrps.height * 0.02;
 
-  //The ninth row, one
+  //Row 9
   let rect71X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect71Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.775;
   let rect71W = imgDrwPrps.width * 0.02;
   let rect71H = imgDrwPrps.height * 0.02;
 
-  //Three in the tenth row
+  //Row 10
   let rect72X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.577;
   let rect72Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.850;
   let rect72W = imgDrwPrps.width * 0.02;
@@ -447,7 +466,7 @@ function draw() {
   let rect74W = imgDrwPrps.width * 0.02;
   let rect74H = imgDrwPrps.height * 0.02;
 
-  //Two in the thirteenth row
+  //Row 13
   let rect75X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
   let rect75Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.940;
   let rect75W = imgDrwPrps.width * 0.02;
@@ -459,13 +478,13 @@ function draw() {
   let rect76H = imgDrwPrps.height * 0.02;
 
   //Square grey blocks at fixed intersections
-  //The first row is one
+  //Row 1
   let rect77X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.877;
   let rect77Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.024;
   let rect77W = imgDrwPrps.width * 0.02;
   let rect77H = imgDrwPrps.height * 0.02;
 
-  //The third row three
+  //Row 3
   let rect78X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.115;
   let rect78Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.350;
   let rect78W = imgDrwPrps.width * 0.02;
@@ -481,7 +500,7 @@ function draw() {
   let rect80W = imgDrwPrps.width * 0.02;
   let rect80H = imgDrwPrps.height * 0.02;
   
-  //The fourth row has two
+  //Row 4
   let rect81X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.537;
   let rect81Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.430;
   let rect81W = imgDrwPrps.width * 0.02;
@@ -492,7 +511,7 @@ function draw() {
   let rect82W = imgDrwPrps.width * 0.02;
   let rect82H = imgDrwPrps.height * 0.02;
 
-  //The fifth row has two
+  //Row 5
   let rect83X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.537;
   let rect83Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.560;
   let rect83W = imgDrwPrps.width * 0.02;
@@ -503,7 +522,7 @@ function draw() {
   let rect84W = imgDrwPrps.width * 0.02;
   let rect84H = imgDrwPrps.height * 0.02;
 
-  //Sixth row two
+  //Row 6
   let rect85X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.537;
   let rect85Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.625;
   let rect85W = imgDrwPrps.width * 0.02;
@@ -514,13 +533,13 @@ function draw() {
   let rect86W = imgDrwPrps.width * 0.02;
   let rect86H = imgDrwPrps.height * 0.02;
 
-  //The seventh row
+  //Row 7
   let rect87X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.537;
   let rect87Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.725;
   let rect87W = imgDrwPrps.width * 0.02;
   let rect87H = imgDrwPrps.height * 0.02;
 
-  //Two in the thirteenth row
+  //Row 13
   let rect88X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.537;
   let rect88Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.940;
   let rect88W = imgDrwPrps.width * 0.02;
@@ -629,7 +648,7 @@ function draw() {
   let rect114W = imgDrwPrps.width * 0.055;
   let rect114H = imgDrwPrps.height * 0.055;
 
-  //Fixed yellow rectangle and combined rectangle
+  //Fixed yellow rectangle
   let rect98X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.135;
   let rect98Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.265;
   let rect98W = imgDrwPrps.width * 0.09;
@@ -675,6 +694,7 @@ function draw() {
   let rect110W = imgDrwPrps.width * 0.09;
   let rect110H = imgDrwPrps.height * 0.03;
 
+  //Fixed combination rectangle
   let rect117X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.32;
   let rect117Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.044;
   let rect117W = imgDrwPrps.width * 0.07;
@@ -723,7 +743,7 @@ function draw() {
   rect(rect24X, rect24Y, rect24W, rect24H);
   rect(rect25X, rect25Y, rect25W, rect25H);
 
-  //Fixed yellow rectangle
+  //Vertical fixed yellow rectangular line
   rect(rect98X, rect98Y, rect98W, rect98H);
   rect(rect99X, rect99Y, rect99W, rect99H);
   rect(rect100X, rect100Y, rect100W, rect100H);
@@ -732,46 +752,43 @@ function draw() {
   rect(rect103X, rect103Y, rect103W, rect103H);
 
   fill(173, 58, 47); // Red
-  //The second row has two
+  //Row 2
   rect(rect53X, rect53Y, rect53W, rect53H);
   rect(rect54X, rect54Y, rect54W, rect54H);
 
-  //The third row three
+  //Row 3
   rect(rect55X, rect55Y, rect55W, rect55H);
   rect(rect56X, rect56Y, rect56W, rect56H);
   rect(rect57X, rect57Y, rect57W, rect57H);
 
-  //The fourth row has four
+  //第四行四个
   rect(rect58X, rect58Y, rect58W, rect58H);
   rect(rect59X, rect59Y, rect59W, rect59H);
   rect(rect60X, rect60Y, rect60W, rect60H);
   rect(rect61X, rect61Y, rect61W, rect61H);
 
-  //The fifth row three
+  //Row 5
   rect(rect62X, rect62Y, rect62W, rect62H);
   rect(rect63X, rect63Y, rect63W, rect63H);
   rect(rect64X, rect64Y, rect64W, rect64H);
 
-  //Sixth row three
+  //Row 6
   rect(rect65X, rect65Y, rect65W, rect65H);
   rect(rect66X, rect66Y, rect66W, rect66H);
   rect(rect67X, rect67Y, rect67W, rect67H);
-
-  //Sixth row three
   rect(rect68X, rect68Y, rect68W, rect68H);
 
-  //The seventh row has two
+  //Row 7
   rect(rect69X, rect69Y, rect69W, rect69H);
   rect(rect70X, rect70Y, rect70W, rect70H);
-
   rect(rect71X, rect71Y, rect71W, rect71H);
 
-  //Three in the tenth row
+  //第Row 10
   rect(rect72X, rect72Y, rect72W, rect72H);
   rect(rect73X, rect73Y, rect73W, rect73H);
   rect(rect74X, rect74Y, rect74W, rect74H);
 
-  //Two in the thirteenth row
+  //Row 13
   rect(rect75X, rect75Y, rect75W, rect75H);
   rect(rect76X, rect76Y, rect76W, rect76H);
 
@@ -785,6 +802,7 @@ function draw() {
   rect(rect120X, rect120Y, rect120W, rect120H);
 
   //Personal code modification
+  //Add a random number of rectangles that can move over time
   for (let i = 0; i < rects1.length; i++) {
     fill(rects1[i].color);
     rect(rects1[i].x, rects1[i].y, rects1[i].size, rects1[i].size);
@@ -856,47 +874,47 @@ function draw() {
   }
 
   fill(75, 107, 186); // Blue
-  //The first row of three
+  //Row 1
   rect(rect26X, rect26Y, rect26W, rect26H);
   rect(rect27X, rect27Y, rect27W, rect27H);
   rect(rect28X, rect28Y, rect28W, rect28H);
-  //The second row has four
+  //Row 2
   rect(rect29X, rect29Y, rect29W, rect29H);
   rect(rect30X, rect30Y, rect30W, rect30H);
   rect(rect31X, rect31Y, rect31W, rect31H);
   rect(rect32X, rect32Y, rect32W, rect32H);
-  //The third row has four
+  //Row 3
   rect(rect33X, rect33Y, rect33W, rect33H);
   rect(rect34X, rect34Y, rect34W, rect34H);
   rect(rect35X, rect35Y, rect35W, rect35H);
   rect(rect36X, rect36Y, rect36W, rect36H);
 
-  //The fourth row has two
+  //Row 4
   rect(rect37X, rect37Y, rect37W, rect37H);
   rect(rect38X, rect38Y, rect38W, rect38H);
 
-  //The fifth row three
+  //Row 5
   rect(rect39X, rect39Y, rect39W, rect39H);
   rect(rect40X, rect40Y, rect40W, rect40H);
   rect(rect41X, rect41Y, rect41W, rect41H);
 
-  //Sixth row two
+  //Row 6
   rect(rect42X, rect42Y, rect42W, rect42H);
   rect(rect43X, rect43Y, rect43W, rect43H);
 
-  //The eighth row
+  //Row 8
   rect(rect44X, rect44Y, rect44W, rect44H);
 
-  //The tenth line is one
+  //Row 10
   rect(rect45X, rect45Y, rect45W, rect45H);
 
-  //Row 11, four
+  //Row 11
   rect(rect46X, rect46Y, rect46W, rect46H);
   rect(rect47X, rect47Y, rect47W, rect47H);
   rect(rect48X, rect48Y, rect48W, rect48H);
   rect(rect49X, rect49Y, rect49W, rect49H);
 
-  //Line 13, three
+  //Row 13
   rect(rect50X, rect50Y, rect50W, rect50H);
   rect(rect51X, rect51Y, rect51W, rect51H);
   rect(rect52X, rect52Y, rect52W, rect52H);
@@ -912,30 +930,30 @@ function draw() {
   rect(rect121X, rect121Y, rect121W, rect121H);
 
   fill(219, 217, 213); // Gray
-  //The first row is one
+  //Row 1
   rect(rect77X, rect77Y, rect77W, rect77H);
 
-  //The third row three
+  //Row 3
   rect(rect78X, rect78Y, rect78W, rect78H);
   rect(rect79X, rect79Y, rect79W, rect79H);
   rect(rect80X, rect80Y, rect80W, rect80H);
 
-  //The fourth row has two
+  //Row 4
   rect(rect81X, rect81Y, rect81W, rect81H);
   rect(rect82X, rect82Y, rect82W, rect82H);
 
-  //The fifth row has two
+  //Row 5
   rect(rect83X, rect83Y, rect83W, rect83H);
   rect(rect84X, rect84Y, rect84W, rect84H);
 
-  //Sixth row two
+  //Row 6
   rect(rect85X, rect85Y, rect85W, rect85H);
   rect(rect86X, rect86Y, rect86W, rect86H);
 
-  //The eighth row
+  //Row 8
   rect(rect87X, rect87Y, rect87W, rect87H);
 
-  //Two in the thirteenth row
+  //Row 13
   rect(rect88X, rect88Y, rect88W, rect88H);
   rect(rect89X, rect89Y, rect89W, rect89H);
   
@@ -943,13 +961,11 @@ function draw() {
   rect(rect106X, rect106Y, rect106W, rect106H);
   rect(rect107X, rect107Y, rect107W, rect107H);
   rect(rect108X, rect108Y, rect108W, rect108H);
-
-  //Moving gray rectangle
   rect(rect115X, rect115Y, rect115W, rect115H);
   rect(rect116X, rect116Y, rect116W, rect116H);
   rect(rect118X, rect118Y, rect118W, rect118H);
   rect(rect119X, rect119Y, rect119W, rect119H);
-  
+
   fill(230, 207, 48); // Yellow
   //Fixed yellow rectangle
   rect(rect104X, rect104Y, rect104W, rect104H);
@@ -968,7 +984,7 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   calculateCanvasProps();
-  numRects1 = int(random(9, 17));  // random number
+  numRects1 = int(random(9, 17)); 
   numRects2 = int(random(9, 17));
   numRects3 = int(random(9, 17));
   numRects4 = int(random(9, 17));
@@ -1008,6 +1024,20 @@ function calculateCanvasProps() {
 
 function initializeRects() {
   rects1 = [];
+  rects2 = [];
+  rects3 = [];
+  rects4 = [];
+  rects5 = [];
+  rects6 = [];
+  rects9 = [];
+  rects11 = [];
+
+  rects15 = [];
+  rects17 = [];
+  rects18 = [];
+  rects19 = [];
+  rects20 = [];
+  rects23 = [];
 
   let rect1X = imgDrwPrps.xOffset;
   let rect1Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.024;
@@ -1046,7 +1076,7 @@ function initializeRects() {
   for (let i = 0; i < numRects2; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0;  
+    let attempts = 0; 
     do {
       x = rect2X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
       y = rect2Y + random(0, rect2H - size);
@@ -1058,12 +1088,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) { 
+      if (attempts > 100) {
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects2.push({x: x, y: y, size: size, color: color, speed: speed});
   }
 
@@ -1075,7 +1105,7 @@ function initializeRects() {
   for (let i = 0; i < numRects3; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0;  
+    let attempts = 0;
     do {
       x = rect3X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
       y = rect3Y + random(0, rect3H - size);
@@ -1087,12 +1117,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) {  
+      if (attempts > 100) {
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects3.push({x: x, y: y, size: size, color: color, speed: speed});
   }
 
@@ -1104,7 +1134,7 @@ function initializeRects() {
   for (let i = 0; i < numRects4; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0; 
+    let attempts = 0;
     do {
       x = rect4X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
       y = rect4Y + random(0, rect4H - size);
@@ -1116,12 +1146,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) { 
+      if (attempts > 100) {
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects4.push({x: x, y: y, size: size, color: color, speed: speed});
   }
 
@@ -1133,7 +1163,7 @@ function initializeRects() {
   for (let i = 0; i < numRects5; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0;  
+    let attempts = 0;
     do {
       x = rect5X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
       y = rect5Y + random(0, rect5H - size);
@@ -1145,12 +1175,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) { 
+      if (attempts > 100) {
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects5.push({x: x, y: y, size: size, color: color, speed: speed});
   }
   
@@ -1174,12 +1204,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) {  
+      if (attempts > 100) {
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects6.push({x: x, y: y, size: size, color: color, speed: speed});
   }
 
@@ -1191,7 +1221,7 @@ function initializeRects() {
   for (let i = 0; i < numRects9; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0;  
+    let attempts = 0; 
     do {
       x = rect9X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
       y = rect9Y + random(0, rect9H - size);
@@ -1203,12 +1233,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) { 
+      if (attempts > 100) {
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects9.push({x: x, y: y, size: size, color: color, speed: speed});
   }
 
@@ -1220,7 +1250,7 @@ function initializeRects() {
   for (let i = 0; i < numRects11; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0;  
+    let attempts = 0;
     do {
       x = rect11X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
       y = rect11Y + random(0, rect11H - size);
@@ -1232,12 +1262,12 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) {  
+      if (attempts > 100) { 
         break;
       }
     } while (overlap);
     let color = colors[i % colors.length];
-    let speed = random(2, 5); 
+    let speed = random(2, 5);
     rects11.push({x: x, y: y, size: size, color: color, speed: speed});
   }
 
@@ -1249,7 +1279,7 @@ function initializeRects() {
   for (let i = 0; i < numRects15; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0; 
+    let attempts = 0;  
     do {
       x = rect15X + random(0, rect15W - size);
       y = rect15Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
@@ -1278,7 +1308,7 @@ function initializeRects() {
   for (let i = 0; i < numRects17; i++) {
     let size = imgDrwPrps.width * 0.02;
     let x, y, overlap;
-    let attempts = 0; 
+    let attempts = 0;  
     do {
       x = rect17X + random(0, rect17W - size);
       y = rect17Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
@@ -1290,7 +1320,7 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) { 
+      if (attempts > 100) {  
         break;
       }
     } while (overlap);
@@ -1348,7 +1378,7 @@ function initializeRects() {
         }
       }
       attempts++;
-      if (attempts > 100) {  
+      if (attempts > 100) { 
         break;
       }
     } while (overlap);
@@ -1441,17 +1471,18 @@ function updateRects() {
         }
       } while (overlap);
       rects1[i].x = x;  // Reappear from the right border with the right edge aligned to the right border
-      rects1[i].speed = random(2, 10); // random speed
+      rects1[i].speed = random(2, 10); // Random Speed
       colorIndex = (colorIndex + 1) % colors.length;  // Update Color Index
       rects1[i].color = colors[colorIndex];
     }
   }
 
+  
   let rect2X = imgDrwPrps.xOffset;
   let rect2W = imgDrwPrps.width;
 
   for (let i = 0; i < rects2.length; i++) {
-    rects2[i].x += rects2[i].speed;  
+    rects2[i].x += rects2[i].speed;
     if (rects2[i].x > rect2X + rect2W) {
       let size = rects2[i].size;
       let x, overlap;
@@ -1481,11 +1512,11 @@ function updateRects() {
   let rect3W = imgDrwPrps.width;
 
   for (let i = 0; i < rects3.length; i++) {
-    rects3[i].x += rects3[i].speed; 
+    rects3[i].x += rects3[i].speed;
     if (rects3[i].x > rect3X + rect3W) {
       let size = rects3[i].size;
       let x, overlap;
-      let attempts = 0;  
+      let attempts = 0; 
       do {
         x = rect3X - size;
         overlap = false;
@@ -1511,7 +1542,7 @@ function updateRects() {
   let rect4W = imgDrwPrps.width;
 
   for (let i = 0; i < rects4.length; i++) {
-    rects4[i].x -= rects4[i].speed; 
+    rects4[i].x -= rects4[i].speed;  // Move left with random speed
     if (rects4[i].x < rect4X) {
       let size = rects4[i].size;
       let x, overlap;
@@ -1541,11 +1572,11 @@ function updateRects() {
   let rect5W = imgDrwPrps.width;
 
   for (let i = 0; i < rects5.length; i++) {
-    rects5[i].x += rects5[i].speed;  
+    rects5[i].x += rects5[i].speed; 
     if (rects5[i].x > rect5X + rect5W) {
       let size = rects5[i].size;
       let x, overlap;
-      let attempts = 0;  
+      let attempts = 0; 
       do {
         x = rect5X - size;
         overlap = false;
@@ -1560,7 +1591,7 @@ function updateRects() {
           break;
         }
       } while (overlap);
-      rects5[i].x = x;  //
+      rects5[i].x = x;  
       rects5[i].speed = random(2, 10); 
       colorIndex = (colorIndex + 1) % colors.length;  
       rects5[i].color = colors[colorIndex];
@@ -1571,11 +1602,11 @@ function updateRects() {
   let rect6W = imgDrwPrps.width;
 
   for (let i = 0; i < rects6.length; i++) {
-    rects6[i].x += rects6[i].speed;  
+    rects6[i].x += rects6[i].speed; 
     if (rects6[i].x > rect6X + rect6W) {
       let size = rects6[i].size;
       let x, overlap;
-      let attempts = 0;  
+      let attempts = 0; 
       do {
         x = rect6X - size;
         overlap = false;
@@ -1586,11 +1617,11 @@ function updateRects() {
           }
         }
         attempts++;
-        if (attempts > 100) {  
+        if (attempts > 100) { 
           break;
         }
       } while (overlap);
-      rects6[i].x = x; 
+      rects6[i].x = x;  
       rects6[i].speed = random(2, 12); 
       colorIndex = (colorIndex + 1) % colors.length;  
       rects6[i].color = colors[colorIndex];
@@ -1601,7 +1632,7 @@ function updateRects() {
   let rect9W = imgDrwPrps.width;
 
   for (let i = 0; i < rects9.length; i++) {
-    rects9[i].x -= rects9[i].speed; 
+    rects9[i].x -= rects9[i].speed;  
     if (rects9[i].x < rect9X) {
       let size = rects9[i].size;
       let x, overlap;
@@ -1622,7 +1653,7 @@ function updateRects() {
       } while (overlap);
       rects9[i].x = x;  
       rects9[i].speed = random(2, 10); 
-      colorIndex = (colorIndex + 1) % colors.length; 
+      colorIndex = (colorIndex + 1) % colors.length;  
       rects9[i].color = colors[colorIndex];
     }
   }
@@ -1635,7 +1666,7 @@ function updateRects() {
     if (rects11[i].x < rect11X) {
       let size = rects11[i].size;
       let x, overlap;
-      let attempts = 0; 
+      let attempts = 0;  
       do {
         x = rect11X + rect11W - size;
         overlap = false;
@@ -1652,7 +1683,7 @@ function updateRects() {
       } while (overlap);
       rects11[i].x = x;  
       rects11[i].speed = random(2, 10); 
-      colorIndex = (colorIndex + 1) % colors.length; 
+      colorIndex = (colorIndex + 1) % colors.length;  
       rects11[i].color = colors[colorIndex];
     }
   }
@@ -1661,11 +1692,11 @@ function updateRects() {
   let rect15H = imgDrwPrps.height;
 
   for (let i = 0; i < rects15.length; i++) {
-    rects15[i].y += rects15[i].speed; 
+    rects15[i].y += rects15[i].speed;  // Move downward using random speed
     if (rects15[i].y > rect15Y + rect15H) {
       let size = rects15[i].size;
       let y, overlap;
-      let attempts = 0; 
+      let attempts = 0;  
       do {
         y = rect15Y - size;
         overlap = false;
@@ -1680,9 +1711,9 @@ function updateRects() {
           break;
         }
       } while (overlap);
-      rects15[i].y = y;  
-      rects15[i].speed = random(2, 10); 
-      colorIndex = (colorIndex + 1) % colors.length; 
+      rects15[i].y = y;  // Reappear from the top border, with the top edge aligned to the top border
+      rects15[i].speed = random(2, 10);
+      colorIndex = (colorIndex + 1) % colors.length;  
       rects15[i].color = colors[colorIndex];
     }
   }
@@ -1691,7 +1722,7 @@ function updateRects() {
   let rect17H = imgDrwPrps.height;
 
   for (let i = 0; i < rects17.length; i++) {
-    rects17[i].y -= rects17[i].speed; 
+    rects17[i].y -= rects17[i].speed;  // Move up using random speed
     if (rects17[i].y + rects17[i].size < rect17Y) {
       let size = rects17[i].size;
       let y, overlap;
@@ -1710,9 +1741,9 @@ function updateRects() {
           break;
         }
       } while (overlap);
-      rects17[i].y = y; 
+      rects17[i].y = y;  // Reappear from the bottom border, and the bottom edge is aligned with the bottom border
       rects17[i].speed = random(2, 10); 
-      colorIndex = (colorIndex + 1) % colors.length; 
+      colorIndex = (colorIndex + 1) % colors.length;  
       rects17[i].color = colors[colorIndex];
     }
   }
@@ -1725,7 +1756,7 @@ function updateRects() {
     if (rects18[i].y + rects18[i].size < rect18Y) {
       let size = rects18[i].size;
       let y, overlap;
-      let attempts = 0;
+      let attempts = 0;  
       do {
         y = rect18Y + rect18H - size;
         overlap = false;
@@ -1742,7 +1773,7 @@ function updateRects() {
       } while (overlap);
       rects18[i].y = y;  
       rects18[i].speed = random(2, 10); 
-      colorIndex = (colorIndex + 1) % colors.length;  
+      colorIndex = (colorIndex + 1) % colors.length; 
       rects18[i].color = colors[colorIndex];
     }
   }
@@ -1751,11 +1782,11 @@ function updateRects() {
   let rect19H = imgDrwPrps.height;
 
   for (let i = 0; i < rects19.length; i++) {
-    rects19[i].y += rects19[i].speed; 
+    rects19[i].y += rects19[i].speed;  
     if (rects19[i].y > rect19Y + rect19H) {
       let size = rects19[i].size;
       let y, overlap;
-      let attempts = 0; 
+      let attempts = 0;  
       do {
         y = rect19Y - size;
         overlap = false;
@@ -1770,9 +1801,9 @@ function updateRects() {
           break;
         }
       } while (overlap);
-      rects19[i].y = y; 
-      rects19[i].speed = random(2, 10);
-      colorIndex = (colorIndex + 1) % colors.length;
+      rects19[i].y = y;  
+      rects19[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length; 
       rects19[i].color = colors[colorIndex];
     }
   }
@@ -1781,11 +1812,11 @@ function updateRects() {
   let rect20H = imgDrwPrps.height;
 
   for (let i = 0; i < rects20.length; i++) {
-    rects20[i].y -= rects20[i].speed; 
+    rects20[i].y -= rects20[i].speed;  
     if (rects20[i].y + rects20[i].size < rect20Y) {
       let size = rects20[i].size;
       let y, overlap;
-      let attempts = 0; 
+      let attempts = 0;  
       do {
         y = rect20Y + rect20H - size;
         overlap = false;
@@ -1796,13 +1827,13 @@ function updateRects() {
           }
         }
         attempts++;
-        if (attempts > 100) { 
+        if (attempts > 100) {  
           break;
         }
       } while (overlap);
       rects20[i].y = y;  
       rects20[i].speed = random(2, 10); 
-      colorIndex = (colorIndex + 1) % colors.length;  
+      colorIndex = (colorIndex + 1) % colors.length; 
       rects20[i].color = colors[colorIndex];
     }
   }
@@ -1811,11 +1842,11 @@ function updateRects() {
   let rect23H = imgDrwPrps.height;
 
   for (let i = 0; i < rects23.length; i++) {
-    rects23[i].y += rects23[i].speed; 
+    rects23[i].y += rects23[i].speed;  
     if (rects23[i].y > rect23Y + rect23H) {
       let size = rects23[i].size;
       let y, overlap;
-      let attempts = 0;
+      let attempts = 0; 
       do {
         y = rect23Y - size;
         overlap = false;
@@ -1830,7 +1861,7 @@ function updateRects() {
           break;
         }
       } while (overlap);
-      rects23[i].y = y; 
+      rects23[i].y = y;  
       rects23[i].speed = random(2, 12); 
       colorIndex = (colorIndex + 1) % colors.length;  
       rects23[i].color = colors[colorIndex];
@@ -1838,6 +1869,7 @@ function updateRects() {
   }
 }
 
+//Checks if two squares overlap
 function isOverlapping(x1, y1, size1, x2, y2, size2) {
   return x1 < x2 + size2 &&
          x1 + size1 > x2 &&
