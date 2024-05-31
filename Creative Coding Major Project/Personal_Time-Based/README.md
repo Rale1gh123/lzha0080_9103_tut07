@@ -8,7 +8,7 @@ First, in the group code Image 1, you can see that, in addition to the backgroun
 
 >![Image 1](assets/1.png) **Image 1**
 
-Then my **idea** was to first use the setInterval code logic to add different numbers of small squares that can move automatically on the yellow long rectangle as the bottom base, so that it can move from left to right, from right to left, from top to bottom and from bottom to top. Then use the frameCount code logic to set a looping time period so that the background color can be displayed from white to black and then from black to white. I got these inspirations from the artwork itself. Piet Mondrian's 'Broadway Boogie Woogie' was created by the author based on the New York city blocks. It can be said that the yellow long rectangle represents the street, so I want to use small squares moving at different speeds to represent the traffic flow. The cycle of the background from white to black and then to white represents the change of time: from day to night. In this way, the whole work represents the prosperity of the city. Regardless of day or night, there is still a huge amount of traffic shuttling between the city roads, just like Image 2.
+Then my **idea** was to first use the setInterval code logic to add different numbers of small squares that can move automatically on the yellow long rectangle as the bottom base, so that it can move from left to right, from right to left, from top to bottom and from bottom to top. Then use the frameCount code logic to set a looping time period so that the background color can be displayed from white to black and then from black to white. I got these inspirations from the artwork itself. Piet Mondrian's 'Broadway Boogie Woogie' was created by the author based on the New York city blocks. It can be said that the yellow long rectangle represents the street, so I want to use small squares moving at different speeds to represent the traffic flow. The cycle of the background from white to black and then to white represents the change of time: from day to night. In this way, the whole work represents the prosperity of the city. Regardless of day or night, there is still a huge amount of traffic shuttling between the city roads, just like Image 2. 
 
 >![Image 2](assets/2.png) **Image 2**
 
@@ -28,7 +28,7 @@ In my personal code, in the first step, I first defined the rectangle to be move
 >![Image 8](assets/8.png) **Image 8**
 
 
-In the second step, add a time cycle through the frameCount code logic, and then change the background color to change linearly with the cycle (Image 9). Time changes automatically without additional operations.
+In the second step, add a time cycle through the frameCount code logic, and then change the background color to change linearly with the cycle (Image 9). Time changes automatically without additional operations. I tried to use gif to display it, but the file was too large to display, so it would be more convenient to open the html directly for browsing.
 
 >![Image 9](assets/9.png) **Image 9**
 
@@ -36,7 +36,7 @@ In the second step, add a time cycle through the frameCount code logic, and then
 
 
 ### **Group Work: Section 3 - Implementation (Replenish)**
-Since I am one of the lead writer of the group code, I would like to provide some additional comments on the iterations of section 3 of the group section, as these may not be mentioned in the group pdf.
+Since I am one of the lead writer of the group code, I would like to provide some additional comments on the iterations of section 3 of the group section, as these may not be mentioned in the group pdf file.
 
 After observing the principles of the artwork, we thought of a process for creating our group’s code:
 - Step 1: Create the bottom layer element: a yellow rectangle; (Image 10)
