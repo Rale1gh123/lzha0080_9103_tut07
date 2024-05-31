@@ -1,8 +1,21 @@
 let imgDrwPrps = {aspect: 0, width: 0, height: 0, xOffset: 0, yOffset: 0};
 let canvasAspectRatio = 0;
-let numRects1; // Numbers of Squares
+let numRects1, numRects2, numRects3, numRects4, numRects5, numRects6, numRects7, numRects8, numRects9, numRects15, numRects17, numRects18, numRects19, numRects20, numRects23; // Numbers of Squares
 let rects1 = [];
+let rects2 = [];
+let rects3 = [];
+let rects4 = [];
+let rects5 = [];
+let rects6 = [];
+let rects9 = [];
+let rects11 = [];
 
+let rects15 = [];
+let rects17 = [];
+let rects18 = [];
+let rects19 = [];
+let rects20 = [];
+let rects23 = [];
 
 let colors = [
   [173, 58, 47],   // red
@@ -14,6 +27,20 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   calculateCanvasProps();
   numRects1 = int(random(3, 7));  // random number between 3-6
+  numRects2 = int(random(4, 6));
+  numRects3 = int(random(3, 7));
+  numRects4 = int(random(4, 8));
+  numRects5 = int(random(2, 7));
+  numRects6 = int(random(3, 6));
+  numRects9 = int(random(4, 7));
+  numRects11 = int(random(2, 6));
+
+  numRects15 = 4;
+  numRects17 = 5;
+  numRects18 = 3;
+  numRects19 = 3;
+  numRects20 = 4;
+  numRects23 = 4;
 
   initializeRects();
   setInterval(updateRects, 35); // use setInternal to refresh square position
@@ -763,6 +790,71 @@ function draw() {
     rect(rects1[i].x, rects1[i].y, rects1[i].size, rects1[i].size);
   }
 
+  for (let i = 0; i < rects2.length; i++) {
+    fill(rects2[i].color);
+    rect(rects2[i].x, rects2[i].y, rects2[i].size, rects2[i].size);
+  }
+
+  for (let i = 0; i < rects3.length; i++) {
+    fill(rects3[i].color);
+    rect(rects3[i].x, rects3[i].y, rects3[i].size, rects3[i].size);
+  }
+
+  for (let i = 0; i < rects4.length; i++) {
+    fill(rects4[i].color);
+    rect(rects4[i].x, rects4[i].y, rects4[i].size, rects4[i].size);
+  }
+
+  for (let i = 0; i < rects5.length; i++) {
+    fill(rects5[i].color);
+    rect(rects5[i].x, rects5[i].y, rects5[i].size, rects5[i].size);
+  }
+
+  for (let i = 0; i < rects6.length; i++) {
+    fill(rects6[i].color);
+    rect(rects6[i].x, rects6[i].y, rects6[i].size, rects6[i].size);
+  }
+
+  for (let i = 0; i < rects9.length; i++) {
+    fill(rects9[i].color);
+    rect(rects9[i].x, rects9[i].y, rects9[i].size, rects9[i].size);
+  }
+
+  for (let i = 0; i < rects11.length; i++) {
+    fill(rects11[i].color);
+    rect(rects11[i].x, rects11[i].y, rects11[i].size, rects11[i].size);
+  }
+
+  for (let i = 0; i < rects15.length; i++) {
+    fill(rects15[i].color);
+    rect(rects15[i].x, rects15[i].y, rects15[i].size, rects15[i].size);
+  }
+
+  for (let i = 0; i < rects17.length; i++) {
+    fill(rects17[i].color);
+    rect(rects17[i].x, rects17[i].y, rects17[i].size, rects17[i].size);
+  }
+
+  for (let i = 0; i < rects18.length; i++) {
+    fill(rects18[i].color);
+    rect(rects18[i].x, rects18[i].y, rects18[i].size, rects18[i].size);
+  }
+
+  for (let i = 0; i < rects19.length; i++) {
+    fill(rects19[i].color);
+    rect(rects19[i].x, rects19[i].y, rects19[i].size, rects19[i].size);
+  }
+
+  for (let i = 0; i < rects20.length; i++) {
+    fill(rects20[i].color);
+    rect(rects20[i].x, rects20[i].y, rects20[i].size, rects20[i].size);
+  }
+
+  for (let i = 0; i < rects23.length; i++) {
+    fill(rects23[i].color);
+    rect(rects23[i].x, rects23[i].y, rects23[i].size, rects23[i].size);
+  }
+
   fill(75, 107, 186); // Blue
   //The first row of three
   rect(rect26X, rect26Y, rect26W, rect26H);
@@ -877,6 +969,20 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   calculateCanvasProps();
   numRects1 = int(random(9, 17));  // random number
+  numRects2 = int(random(9, 17));
+  numRects3 = int(random(9, 17));
+  numRects4 = int(random(9, 17));
+  numRects5 = int(random(9, 17));
+  numRects6 = int(random(9, 17));
+  numRects9 = int(random(9, 17));
+  numRects11 = int(random(9, 17));
+
+  numRects15 = int(random(9, 17));
+  numRects17 = int(random(9, 17));
+  numRects18 = int(random(9, 17));
+  numRects19 = int(random(9, 17));
+  numRects20 = int(random(9, 17));
+  numRects23 = int(random(9, 17));
   initializeRects();
 }
 
@@ -931,6 +1037,383 @@ function initializeRects() {
     let speed = random(2, 6); // random speed
     rects1.push({x: x, y: y, size: size, color: color, speed: speed});
   }
+
+  let rect2X = imgDrwPrps.xOffset;
+  let rect2Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.16;
+  let rect2W = imgDrwPrps.width;
+  let rect2H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects2; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect2X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect2Y + random(0, rect2H - size);
+      overlap = false;
+      for (let j = 0; j < rects2.length; j++) {
+        if (isOverlapping(x, y, size, rects2[j].x, rects2[j].y, rects2[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) { 
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects2.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect3X = imgDrwPrps.xOffset;
+  let rect3Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.35;
+  let rect3W = imgDrwPrps.width;
+  let rect3H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects3; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect3X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect3Y + random(0, rect3H - size);
+      overlap = false;
+      for (let j = 0; j < rects3.length; j++) {
+        if (isOverlapping(x, y, size, rects3[j].x, rects3[j].y, rects3[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects3.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect4X = imgDrwPrps.xOffset;
+  let rect4Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.43;
+  let rect4W = imgDrwPrps.width;
+  let rect4H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects4; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0; 
+    do {
+      x = rect4X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect4Y + random(0, rect4H - size);
+      overlap = false;
+      for (let j = 0; j < rects4.length; j++) {
+        if (isOverlapping(x, y, size, rects4[j].x, rects4[j].y, rects4[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) { 
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects4.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect5X = imgDrwPrps.xOffset;
+  let rect5Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.56;
+  let rect5W = imgDrwPrps.width;
+  let rect5H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects5; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect5X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect5Y + random(0, rect5H - size);
+      overlap = false;
+      for (let j = 0; j < rects5.length; j++) {
+        if (isOverlapping(x, y, size, rects5[j].x, rects5[j].y, rects5[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) { 
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects5.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+  
+  let rect6X = imgDrwPrps.xOffset;
+  let rect6Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.625;
+  let rect6W = imgDrwPrps.width;
+  let rect6H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects6; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;
+    do {
+      x = rect6X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect6Y + random(0, rect6H - size);
+      overlap = false;
+      for (let j = 0; j < rects6.length; j++) {
+        if (isOverlapping(x, y, size, rects6[j].x, rects6[j].y, rects6[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects6.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect9X = imgDrwPrps.xOffset;
+  let rect9Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.85;
+  let rect9W = imgDrwPrps.width;
+  let rect9H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects9; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect9X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect9Y + random(0, rect9H - size);
+      overlap = false;
+      for (let j = 0; j < rects9.length; j++) {
+        if (isOverlapping(x, y, size, rects9[j].x, rects9[j].y, rects9[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) { 
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects9.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect11X = imgDrwPrps.xOffset;
+  let rect11Y = imgDrwPrps.yOffset + imgDrwPrps.height * 0.940;
+  let rect11W = imgDrwPrps.width;
+  let rect11H = imgDrwPrps.height * 0.02;
+
+  for (let i = 0; i < numRects11; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect11X + random(imgDrwPrps.width * 0.045, imgDrwPrps.width * 0.822);
+      y = rect11Y + random(0, rect11H - size);
+      overlap = false;
+      for (let j = 0; j < rects11.length; j++) {
+        if (isOverlapping(x, y, size, rects11[j].x, rects11[j].y, rects11[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 5); 
+    rects11.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect15X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.06;
+  let rect15Y = imgDrwPrps.yOffset;
+  let rect15W = imgDrwPrps.width * 0.02;
+  let rect15H = imgDrwPrps.height;
+
+  for (let i = 0; i < numRects15; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0; 
+    do {
+      x = rect15X + random(0, rect15W - size);
+      y = rect15Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
+      overlap = false;
+      for (let j = 0; j < rects15.length; j++) {
+        if (isOverlapping(x, y, size, rects15[j].x, rects15[j].y, rects15[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 10); 
+    rects15.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect17X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.225;
+  let rect17Y = imgDrwPrps.yOffset;
+  let rect17W = imgDrwPrps.width * 0.02;
+  let rect17H = imgDrwPrps.height;
+
+  for (let i = 0; i < numRects17; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0; 
+    do {
+      x = rect17X + random(0, rect17W - size);
+      y = rect17Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
+      overlap = false;
+      for (let j = 0; j < rects17.length; j++) {
+        if (isOverlapping(x, y, size, rects17[j].x, rects17[j].y, rects17[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) { 
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 10); 
+    rects17.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect18X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.537;
+  let rect18Y = imgDrwPrps.yOffset;
+  let rect18W = imgDrwPrps.width * 0.02;
+  let rect18H = imgDrwPrps.height;
+
+  for (let i = 0; i < numRects18; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect18X + random(0, rect18W - size);
+      y = rect18Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
+      overlap = false;
+      for (let j = 0; j < rects18.length; j++) {
+        if (isOverlapping(x, y, size, rects18[j].x, rects18[j].y, rects18[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 10); 
+    rects18.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect19X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.577;
+  let rect19Y = imgDrwPrps.yOffset;
+  let rect19W = imgDrwPrps.width * 0.02;
+  let rect19H = imgDrwPrps.height;
+
+  for (let i = 0; i < numRects19; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0; 
+    do {
+      x = rect19X + random(0, rect19W - size);
+      y = rect19Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
+      overlap = false;
+      for (let j = 0; j < rects19.length; j++) {
+        if (isOverlapping(x, y, size, rects19[j].x, rects19[j].y, rects19[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 10); 
+    rects19.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect20X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.842;
+  let rect20Y = imgDrwPrps.yOffset;
+  let rect20W = imgDrwPrps.width * 0.02;
+  let rect20H = imgDrwPrps.height;
+  
+  for (let i = 0; i < numRects20; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect20X + random(0, rect20W - size);
+      y = rect20Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
+      overlap = false;
+      for (let j = 0; j < rects20.length; j++) {
+        if (isOverlapping(x, y, size, rects20[j].x, rects20[j].y, rects20[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 10); 
+    rects20.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
+
+  let rect23X = imgDrwPrps.xOffset + imgDrwPrps.width * 0.962;
+  let rect23Y = imgDrwPrps.yOffset;
+  let rect23W = imgDrwPrps.width * 0.02;
+  let rect23H = imgDrwPrps.height;
+
+  for (let i = 0; i < numRects23; i++) {
+    let size = imgDrwPrps.width * 0.02;
+    let x, y, overlap;
+    let attempts = 0;  
+    do {
+      x = rect23X + random(0, rect23W - size);
+      y = rect23Y + random(imgDrwPrps.height * 0.045, imgDrwPrps.height * 0.822);
+      overlap = false;
+      for (let j = 0; j < rects23.length; j++) {
+        if (isOverlapping(x, y, size, rects23[j].x, rects23[j].y, rects23[j].size)) {
+          overlap = true;
+          break;
+        }
+      }
+      attempts++;
+      if (attempts > 100) {  
+        break;
+      }
+    } while (overlap);
+    let color = colors[i % colors.length];
+    let speed = random(2, 10); 
+    rects23.push({x: x, y: y, size: size, color: color, speed: speed});
+  }
 }
 
 function updateRects() {
@@ -961,6 +1444,396 @@ function updateRects() {
       rects1[i].speed = random(2, 10); // random speed
       colorIndex = (colorIndex + 1) % colors.length;  // Update Color Index
       rects1[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect2X = imgDrwPrps.xOffset;
+  let rect2W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects2.length; i++) {
+    rects2[i].x += rects2[i].speed;  
+    if (rects2[i].x > rect2X + rect2W) {
+      let size = rects2[i].size;
+      let x, overlap;
+      let attempts = 0;  
+      do {
+        x = rect2X - size;
+        overlap = false;
+        for (let j = 0; j < rects2.length; j++) {
+          if (j !== i && isOverlapping(x, rects2[i].y, size, rects2[j].x, rects2[j].y, rects2[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects2[i].x = x;  
+      rects2[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects2[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect3X = imgDrwPrps.xOffset;
+  let rect3W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects3.length; i++) {
+    rects3[i].x += rects3[i].speed; 
+    if (rects3[i].x > rect3X + rect3W) {
+      let size = rects3[i].size;
+      let x, overlap;
+      let attempts = 0;  
+      do {
+        x = rect3X - size;
+        overlap = false;
+        for (let j = 0; j < rects3.length; j++) {
+          if (j !== i && isOverlapping(x, rects3[i].y, size, rects3[j].x, rects3[j].y, rects3[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects3[i].x = x;  
+      rects3[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects3[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect4X = imgDrwPrps.xOffset;
+  let rect4W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects4.length; i++) {
+    rects4[i].x -= rects4[i].speed; 
+    if (rects4[i].x < rect4X) {
+      let size = rects4[i].size;
+      let x, overlap;
+      let attempts = 0;  
+      do {
+        x = rect4X + rect4W - size;
+        overlap = false;
+        for (let j = 0; j < rects4.length; j++) {
+          if (j !== i && isOverlapping(x, rects4[i].y, size, rects4[j].x, rects4[j].y, rects4[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects4[i].x = x;  
+      rects4[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects4[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect5X = imgDrwPrps.xOffset;
+  let rect5W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects5.length; i++) {
+    rects5[i].x += rects5[i].speed;  
+    if (rects5[i].x > rect5X + rect5W) {
+      let size = rects5[i].size;
+      let x, overlap;
+      let attempts = 0;  
+      do {
+        x = rect5X - size;
+        overlap = false;
+        for (let j = 0; j < rects5.length; j++) {
+          if (j !== i && isOverlapping(x, rects5[i].y, size, rects5[j].x, rects5[j].y, rects5[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects5[i].x = x;  //
+      rects5[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects5[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect6X = imgDrwPrps.xOffset;
+  let rect6W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects6.length; i++) {
+    rects6[i].x += rects6[i].speed;  
+    if (rects6[i].x > rect6X + rect6W) {
+      let size = rects6[i].size;
+      let x, overlap;
+      let attempts = 0;  
+      do {
+        x = rect6X - size;
+        overlap = false;
+        for (let j = 0; j < rects6.length; j++) {
+          if (j !== i && isOverlapping(x, rects6[i].y, size, rects6[j].x, rects6[j].y, rects6[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects6[i].x = x; 
+      rects6[i].speed = random(2, 12); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects6[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect9X = imgDrwPrps.xOffset;
+  let rect9W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects9.length; i++) {
+    rects9[i].x -= rects9[i].speed; 
+    if (rects9[i].x < rect9X) {
+      let size = rects9[i].size;
+      let x, overlap;
+      let attempts = 0; 
+      do {
+        x = rect9X + rect9W - size;
+        overlap = false;
+        for (let j = 0; j < rects9.length; j++) {
+          if (j !== i && isOverlapping(x, rects9[i].y, size, rects9[j].x, rects9[j].y, rects9[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects9[i].x = x;  
+      rects9[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length; 
+      rects9[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect11X = imgDrwPrps.xOffset;
+  let rect11W = imgDrwPrps.width;
+
+  for (let i = 0; i < rects11.length; i++) {
+    rects11[i].x -= rects11[i].speed; 
+    if (rects11[i].x < rect11X) {
+      let size = rects11[i].size;
+      let x, overlap;
+      let attempts = 0; 
+      do {
+        x = rect11X + rect11W - size;
+        overlap = false;
+        for (let j = 0; j < rects11.length; j++) {
+          if (j !== i && isOverlapping(x, rects11[i].y, size, rects11[j].x, rects11[j].y, rects11[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects11[i].x = x;  
+      rects11[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length; 
+      rects11[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect15Y = imgDrwPrps.yOffset;
+  let rect15H = imgDrwPrps.height;
+
+  for (let i = 0; i < rects15.length; i++) {
+    rects15[i].y += rects15[i].speed; 
+    if (rects15[i].y > rect15Y + rect15H) {
+      let size = rects15[i].size;
+      let y, overlap;
+      let attempts = 0; 
+      do {
+        y = rect15Y - size;
+        overlap = false;
+        for (let j = 0; j < rects15.length; j++) {
+          if (j !== i && isOverlapping(rects15[i].x, y, size, rects15[j].x, rects15[j].y, rects15[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects15[i].y = y;  
+      rects15[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length; 
+      rects15[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect17Y = imgDrwPrps.yOffset;
+  let rect17H = imgDrwPrps.height;
+
+  for (let i = 0; i < rects17.length; i++) {
+    rects17[i].y -= rects17[i].speed; 
+    if (rects17[i].y + rects17[i].size < rect17Y) {
+      let size = rects17[i].size;
+      let y, overlap;
+      let attempts = 0;  
+      do {
+        y = rect17Y + rect17H - size;
+        overlap = false;
+        for (let j = 0; j < rects17.length; j++) {
+          if (j !== i && isOverlapping(rects17[i].x, y, size, rects17[j].x, rects17[j].y, rects17[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects17[i].y = y; 
+      rects17[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length; 
+      rects17[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect18Y = imgDrwPrps.yOffset;
+  let rect18H = imgDrwPrps.height;
+
+  for (let i = 0; i < rects18.length; i++) {
+    rects18[i].y -= rects18[i].speed;  
+    if (rects18[i].y + rects18[i].size < rect18Y) {
+      let size = rects18[i].size;
+      let y, overlap;
+      let attempts = 0;
+      do {
+        y = rect18Y + rect18H - size;
+        overlap = false;
+        for (let j = 0; j < rects18.length; j++) {
+          if (j !== i && isOverlapping(rects18[i].x, y, size, rects18[j].x, rects18[j].y, rects18[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects18[i].y = y;  
+      rects18[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects18[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect19Y = imgDrwPrps.yOffset;
+  let rect19H = imgDrwPrps.height;
+
+  for (let i = 0; i < rects19.length; i++) {
+    rects19[i].y += rects19[i].speed; 
+    if (rects19[i].y > rect19Y + rect19H) {
+      let size = rects19[i].size;
+      let y, overlap;
+      let attempts = 0; 
+      do {
+        y = rect19Y - size;
+        overlap = false;
+        for (let j = 0; j < rects19.length; j++) {
+          if (j !== i && isOverlapping(rects19[i].x, y, size, rects19[j].x, rects19[j].y, rects19[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) {  
+          break;
+        }
+      } while (overlap);
+      rects19[i].y = y; 
+      rects19[i].speed = random(2, 10);
+      colorIndex = (colorIndex + 1) % colors.length;
+      rects19[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect20Y = imgDrwPrps.yOffset;
+  let rect20H = imgDrwPrps.height;
+
+  for (let i = 0; i < rects20.length; i++) {
+    rects20[i].y -= rects20[i].speed; 
+    if (rects20[i].y + rects20[i].size < rect20Y) {
+      let size = rects20[i].size;
+      let y, overlap;
+      let attempts = 0; 
+      do {
+        y = rect20Y + rect20H - size;
+        overlap = false;
+        for (let j = 0; j < rects20.length; j++) {
+          if (j !== i && isOverlapping(rects20[i].x, y, size, rects20[j].x, rects20[j].y, rects20[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) { 
+          break;
+        }
+      } while (overlap);
+      rects20[i].y = y;  
+      rects20[i].speed = random(2, 10); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects20[i].color = colors[colorIndex];
+    }
+  }
+
+  let rect23Y = imgDrwPrps.yOffset;
+  let rect23H = imgDrwPrps.height;
+
+  for (let i = 0; i < rects23.length; i++) {
+    rects23[i].y += rects23[i].speed; 
+    if (rects23[i].y > rect23Y + rect23H) {
+      let size = rects23[i].size;
+      let y, overlap;
+      let attempts = 0;
+      do {
+        y = rect23Y - size;
+        overlap = false;
+        for (let j = 0; j < rects23.length; j++) {
+          if (j !== i && isOverlapping(rects23[i].x, y, size, rects23[j].x, rects23[j].y, rects23[j].size)) {
+            overlap = true;
+            break;
+          }
+        }
+        attempts++;
+        if (attempts > 100) { 
+          break;
+        }
+      } while (overlap);
+      rects23[i].y = y; 
+      rects23[i].speed = random(2, 12); 
+      colorIndex = (colorIndex + 1) % colors.length;  
+      rects23[i].color = colors[colorIndex];
     }
   }
 }
